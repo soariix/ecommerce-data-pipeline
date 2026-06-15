@@ -1,0 +1,15 @@
+product_id,name,category,unit_price,stock_qty,supplier_id
+201,Teclado Mecânico RGB,Electronics,149.99,120,S01
+202,Mouse Gamer,Electronics,89.99,200,S01
+203,Cadeira Gamer,Furniture,150.00,45,S02
+204,Monitor 24pol Full HD,Electronics,1299.99,30,S01
+205,Headset Bluetooth,Electronics,59.99,180,S03
+206,Mousepad XL,Accessories,30.00,500,S04
+207,Webcam Full HD 1080p,Electronics,799.99,25,S01
+208,Hub USB-C 7 Portas,Electronics,90.00,95,S03
+209,Suporte para Monitor,Furniture,45.50,150,S02
+210,Iluminação LED RGB,Accessories,90.00,300,S04
+211,Desk Mat Premium,Accessories,199.00,80,S04
+212,Caixinha Bluetooth,Electronics,50.00,220,S03
+213,Notebook Dell i7 16GB,Electronics,2500.00,15,S01
+214,Cadeira Ergonômica,Furniture,90.00,60,S02

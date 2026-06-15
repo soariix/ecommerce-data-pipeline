@@ -1,0 +1,21 @@
+customer_id,name,cpf,email,phone,city,state,signup_date,last_purchase_date
+101,João Silva,123.456.789-01,joao.silva@email.com,(11)98765-4321,São Paulo,SP,2023-01-10,2024-03-06
+102,Maria Oliveira,234.567.890-02,maria.oliveira@email.com,(21)97654-3210,Rio de Janeiro,RJ,2023-02-15,2024-03-07
+103,Carlos Souza,345.678.901-03,carlos.souza@email.com,(31)96543-2109,Belo Horizonte,MG,2023-03-20,2024-03-08
+104,Ana Costa,456.789.012-04,ana.costa@email.com,(41)95432-1098,Curitiba,PR,2023-04-25,2024-03-09
+105,Pedro Fernandes,567.890.123-05,pedro.fernandes@email.com,(51)94321-0987,Porto Alegre,RS,2023-05-30,2024-03-10
+106,Fernanda Lima,678.901.234-06,fernanda.lima@email.com,(61)93210-9876,Brasília,DF,2023-06-10,2024-02-16
+107,Roberto Santos,789.012.345-07,roberto.santos@email.com,(71)92109-8765,Salvador,BA,2023-07-15,2024-02-17
+108,Juliana Pereira,890.123.456-08,juliana.pereira@email.com,(81)91098-7654,Recife,PE,2023-08-20,2024-02-18
+109,Lucas Rodrigues,901.234.567-09,lucas.rodrigues@email.com,(85)90987-6543,Fortaleza,CE,2023-09-25,2024-02-19
+110,Amanda Alves,012.345.678-10,amanda.alves@email.com,(92)99876-5432,Manaus,AM,2023-10-30,2024-02-20
+111,Marcelo Nascimento,123.456.789-11,marcelo.nascimento@email.com,(62)98765-4320,Goiânia,GO,2023-11-05,2024-02-21
+112,Tatiane Carvalho,234.567.890-12,tatiane.carvalho@email.com,(67)97654-3219,Campo Grande,MS,2023-11-10,2024-02-22
+113,Eduardo Martins,345.678.901-13,eduardo.martins@email.com,(65)96543-2108,Cuiabá,MT,2023-11-15,2024-02-23
+114,Camila Gomes,456.789.012-14,camila.gomes@email.com,(91)95432-1097,Belém,PA,2023-11-20,2024-02-24
+115,Gabriel Ferreira,567.890.123-15,gabriel.ferreira@email.com,(98)94321-0986,São Luís,MA,2023-11-25,2024-02-25
+116,Bruna Ribeiro,678.901.234-16,bruna.ribeiro@email.com,(86)93210-9875,Teresina,PI,2023-12-01,2024-03-01
+117,Diego Mendes,789.012.345-17,diego.mendes@email.com,(83)92109-8764,João Pessoa,PB,2023-12-05,2024-03-02
+118,Larissa Barbosa,890.123.456-18,larissa.barbosa@email.com,(84)91098-7653,Natal,RN,2023-12-10,2024-03-03
+119,Felipe Castro,901.234.567-19,felipe.castro@email.com,(82)90987-6542,Maceió,AL,2023-12-15,2024-03-04
+120,Vanessa Cardoso,012.345.678-20,vanessa.cardoso@email.com,(79)99876-5431,Aracaju,SE,2023-12-20,2024-03-05

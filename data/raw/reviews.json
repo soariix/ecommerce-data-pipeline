@@ -1,0 +1,162 @@
+[
+  {
+    "review_id": 1,
+    "product_id": 201,
+    "customer_id": 101,
+    "rating": 5,
+    "comment": "Teclado excelente, resposta tátil incrível!",
+    "review_date": "2024-01-20"
+  },
+  {
+    "review_id": 2,
+    "product_id": 202,
+    "customer_id": 102,
+    "rating": 3,
+    "comment": "Mouse ok, mas o scroll poderia ser melhor.",
+    "review_date": "2024-01-22"
+  },
+  {
+    "review_id": 3,
+    "product_id": 203,
+    "customer_id": 103,
+    "rating": 4,
+    "comment": "Cadeira confortável, montagem fácil.",
+    "review_date": "2024-01-23"
+  },
+  {
+    "review_id": 4,
+    "product_id": 204,
+    "customer_id": 101,
+    "rating": 5,
+    "comment": "Monitor com cores vibrantes, vale cada centavo!",
+    "review_date": "2024-01-25"
+  },
+  {
+    "review_id": 5,
+    "product_id": 205,
+    "customer_id": 105,
+    "rating": 4,
+    "comment": "Headset com ótima qualidade de som.",
+    "review_date": "2024-01-26"
+  },
+  {
+    "review_id": 6,
+    "product_id": 206,
+    "customer_id": 102,
+    "rating": 4,
+    "comment": "Mousepad grande e resistente, recomendo.",
+    "review_date": "2024-01-27"
+  },
+  {
+    "review_id": 7,
+    "product_id": 207,
+    "customer_id": 106,
+    "rating": 5,
+    "comment": "Webcam com imagem cristalina, perfeita para reuniões.",
+    "review_date": "2024-01-28"
+  },
+  {
+    "review_id": 8,
+    "product_id": 208,
+    "customer_id": 103,
+    "rating": 2,
+    "comment": "Hub com algumas portas instáveis, decepcionante.",
+    "review_date": "2024-01-29"
+  },
+  {
+    "review_id": 9,
+    "product_id": 209,
+    "customer_id": 107,
+    "rating": 5,
+    "comment": "Suporte perfeito, ajuda muito na postura.",
+    "review_date": "2024-01-30"
+  },
+  {
+    "review_id": 10,
+    "product_id": 210,
+    "customer_id": 108,
+    "rating": 4,
+    "comment": "Iluminação bonita, funciona bem com qualquer setup.",
+    "review_date": "2024-02-01"
+  },
+  {
+    "review_id": 11,
+    "product_id": 211,
+    "customer_id": 110,
+    "rating": 5,
+    "comment": "Desk mat enorme e de qualidade premium!",
+    "review_date": "2024-02-03"
+  },
+  {
+    "review_id": 12,
+    "product_id": 212,
+    "customer_id": 112,
+    "rating": 3,
+    "comment": "Caixinha razoável para o preço, sem reclamações.",
+    "review_date": "2024-02-05"
+  },
+  {
+    "review_id": 13,
+    "product_id": 213,
+    "customer_id": 101,
+    "rating": 5,
+    "comment": "Notebook incrível, roda tudo sem travar!",
+    "review_date": "2024-02-08"
+  },
+  {
+    "review_id": 14,
+    "product_id": 214,
+    "customer_id": 103,
+    "rating": 4,
+    "comment": "Cadeira ergonômica excelente para home office.",
+    "review_date": "2024-02-10"
+  },
+  {
+    "review_id": 15,
+    "product_id": 201,
+    "customer_id": 116,
+    "rating": 5,
+    "comment": "Segundo teclado que compro, nunca decepciona.",
+    "review_date": "2024-03-05"
+  },
+  {
+    "review_id": 16,
+    "product_id": 207,
+    "customer_id": 102,
+    "rating": 4,
+    "comment": "Webcam boa, entrega rápida, produto conforme descrito.",
+    "review_date": "2024-03-10"
+  },
+  {
+    "review_id": 17,
+    "product_id": 204,
+    "customer_id": 119,
+    "rating": 5,
+    "comment": "Monitor excelente, altamente recomendado.",
+    "review_date": "2024-03-06"
+  },
+  {
+    "review_id": 18,
+    "product_id": 213,
+    "customer_id": 115,
+    "rating": 5,
+    "comment": "Melhor notebook que já tive, absurdo de rápido.",
+    "review_date": "2024-02-28"
+  },
+  {
+    "review_id": 19,
+    "product_id": 202,
+    "customer_id": 104,
+    "rating": 4,
+    "comment": "Mouse gamer que atende bem, bom custo-benefício.",
+    "review_date": "2024-02-16"
+  },
+  {
+    "review_id": 20,
+    "product_id": 211,
+    "customer_id": 113,
+    "rating": 5,
+    "comment": "Desk mat enorme, acabamento impecável.",
+    "review_date": "2024-02-25"
+  }
+]

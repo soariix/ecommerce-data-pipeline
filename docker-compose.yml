@@ -1,0 +1,130 @@
+version: "3.8"
+
+# ── Configuração compartilhada do Airflow ─────────────────────
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.9.1-python3.11
+  environment:
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db/airflow
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__WEBSERVER__SECRET_KEY: "ecommerce_pipeline_webserver_key"
+    AIRFLOW__CORE__FERNET_KEY: ""
+    # Variáveis do pipeline
+    POSTGRES_HOST: postgres
+    POSTGRES_DB: ${POSTGRES_DB:-ecommerce_gold}
+    POSTGRES_USER: ${POSTGRES_USER:-pipeline}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pipeline123}
+    PII_SALT: ${PII_SALT:-change_me_in_production}
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./src:/opt/airflow/src
+    - ./data:/opt/airflow/data
+    - ./sql:/opt/airflow/sql
+    - airflow_logs:/opt/airflow/logs
+  depends_on:
+    airflow-db:
+      condition: service_healthy
+
+services:
+
+  # ── PostgreSQL — Camada Gold ─────────────────────────────────
+  postgres:
+    image: postgres:15-alpine
+    container_name: ecommerce_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-ecommerce_gold}
+      POSTGRES_USER: ${POSTGRES_USER:-pipeline}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pipeline123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/01_init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pipeline}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── MongoDB — Fonte de reviews (JSON) ────────────────────────
+  mongodb:
+    image: mongo:7-jammy
+    container_name: ecommerce_mongodb
+    environment:
+      MONGO_INITDB_DATABASE: ecommerce_raw
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── PostgreSQL — Metadata do Airflow ─────────────────────────
+  airflow-db:
+    image: postgres:15-alpine
+    container_name: ecommerce_airflow_db
+    environment:
+      POSTGRES_DB: airflow
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+    volumes:
+      - airflow_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Airflow Init (executa uma vez) ───────────────────────────
+  airflow-init:
+    <<: *airflow-common
+    container_name: ecommerce_airflow_init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        airflow db upgrade &&
+        airflow users create \
+          --username admin \
+          --password admin \
+          --firstname Admin \
+          --lastname User \
+          --role Admin \
+          --email admin@ecommerce.local
+    restart: on-failure
+
+  # ── Airflow Webserver ─────────────────────────────────────────
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: ecommerce_airflow_webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  # ── Airflow Scheduler ─────────────────────────────────────────
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: ecommerce_airflow_scheduler
+    command: scheduler
+    restart: unless-stopped
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+volumes:
+  postgres_data:
+  mongo_data:
+  airflow_db_data:
+  airflow_logs:
