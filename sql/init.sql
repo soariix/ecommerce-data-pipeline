@@ -1,8 +1,3 @@
--- ============================================================
--- init.sql — Inicialização do schema Gold no PostgreSQL
--- Executado automaticamente pelo docker-entrypoint-initdb.d
--- ============================================================
-
 CREATE SCHEMA IF NOT EXISTS gold;
 
 -- Tabela staging da camada Silver (populada via Spark JDBC)

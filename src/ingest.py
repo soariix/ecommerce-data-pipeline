@@ -1,10 +1,3 @@
-"""
-ingest.py — Camada de ingestão de dados brutos (Raw Layer)
-
-Responsável por ler arquivos CSV/JSON com schema explícito via PySpark.
-Schema explícito evita inferência automática (cara em produção) e garante
-que tipos incorretos nos dados brutos sejam detectados imediatamente.
-"""
 import logging
 import os
 
@@ -18,8 +11,6 @@ from pyspark.sql.types import (
 )
 
 logger = logging.getLogger(__name__)
-
-# ── Schemas explícitos ────────────────────────────────────────────────────────
 
 ORDERS_SCHEMA = StructType([
     StructField("order_id",       IntegerType(), nullable=False),
@@ -54,8 +45,6 @@ PRODUCTS_SCHEMA = StructType([
 ])
 
 
-# ── SparkSession factory ──────────────────────────────────────────────────────
-
 def create_spark_session(app_name: str = "EcommerceDataPipeline") -> SparkSession:
     """Cria e retorna uma SparkSession configurada para execução local."""
     spark = (
@@ -73,8 +62,6 @@ def create_spark_session(app_name: str = "EcommerceDataPipeline") -> SparkSessio
     logger.info("SparkSession iniciada: %s", app_name)
     return spark
 
-
-# ── Funções de ingestão ───────────────────────────────────────────────────────
 
 def ingest_orders(spark: SparkSession, path: str) -> DataFrame:
     """Lê o arquivo CSV de pedidos com schema explícito."""
@@ -117,8 +104,6 @@ def ingest_reviews(spark: SparkSession, path: str) -> DataFrame:
     logger.info("  → %d registros carregados (reviews).", count)
     return df
 
-
-# ── Execução direta (debug) ───────────────────────────────────────────────────
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,

@@ -1,11 +1,3 @@
-"""
-analytics.py — Camada Gold: métricas analíticas via Spark SQL
-
-Produz três tabelas analíticas prontas para consumo:
-  - revenue_by_category  → receita, ticket médio e share por categoria
-  - top_customers        → ranking de clientes por lifetime value
-  - churn_risk_score     → score de risco de churn por cliente
-"""
 import logging
 import os
 
@@ -15,14 +7,10 @@ from pyspark.sql import functions as F
 logger = logging.getLogger(__name__)
 
 
-# ── Helper interno ────────────────────────────────────────────────────────────
-
 def _register_view(df: DataFrame, view_name: str) -> None:
     df.createOrReplaceTempView(view_name)
     logger.debug("Temp view registrada: %s", view_name)
 
-
-# ── Queries Gold ──────────────────────────────────────────────────────────────
 
 def revenue_by_category(spark: SparkSession, silver_df: DataFrame) -> DataFrame:
     """
@@ -111,8 +99,6 @@ def churn_risk_score(spark: SparkSession, silver_df: DataFrame) -> DataFrame:
     """)
 
 
-# ── Orquestração ──────────────────────────────────────────────────────────────
-
 def run_all_analytics(spark: SparkSession, silver_df: DataFrame) -> dict:
     """
     Executa todas as queries Gold e retorna um dicionário de DataFrames.
@@ -134,8 +120,6 @@ def run_all_analytics(spark: SparkSession, silver_df: DataFrame) -> dict:
         logger.info("Gold [%s]: %d linhas.", name, df.count())
     return gold
 
-
-# ── Persistência ──────────────────────────────────────────────────────────────
 
 def save_gold_parquet(gold: dict, base_path: str) -> None:
     """Salva todas as tabelas Gold em Parquet."""
@@ -171,8 +155,6 @@ def load_to_postgres(
     )
     logger.info("Gold [%s] carregado no PostgreSQL.", table)
 
-
-# ── Execução direta (debug) ───────────────────────────────────────────────────
 
 if __name__ == "__main__":
     import sys

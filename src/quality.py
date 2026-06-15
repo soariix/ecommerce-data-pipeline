@@ -1,15 +1,3 @@
-"""
-quality.py — Validações de qualidade de dados
-
-Implementa checks declarativos que produzem um QualityReport estruturado:
-  - check_nulls               → colunas obrigatórias sem nulos
-  - check_duplicates          → unicidade de chave primária/composta
-  - check_range               → valores numéricos dentro do range esperado
-  - check_allowed_values      → valores pertencem a conjunto permitido
-  - check_referential_integrity → chaves estrangeiras resolvidas
-
-O pipeline é interrompido se qualquer check de severidade ERROR falhar.
-"""
 import logging
 from dataclasses import dataclass, field
 from typing import Any, List, Optional
@@ -19,8 +7,6 @@ from pyspark.sql import functions as F
 
 logger = logging.getLogger(__name__)
 
-
-# ── Modelos de resultado ──────────────────────────────────────────────────────
 
 @dataclass
 class CheckResult:
@@ -66,8 +52,6 @@ class QualityReport:
         lines.append("=" * 60)
         return "\n".join(lines)
 
-
-# ── Checks individuais ────────────────────────────────────────────────────────
 
 def check_nulls(
     df: DataFrame,
@@ -185,27 +169,12 @@ def check_referential_integrity(
     )
 
 
-# ── Suite de qualidade da tabela Orders ──────────────────────────────────────
-
 def run_orders_quality(
     df: DataFrame,
     customers_df: DataFrame = None,
     products_df: DataFrame = None,
 ) -> QualityReport:
-    """
-    Executa a suite completa de qualidade na tabela de pedidos.
 
-    Checks de severidade ERROR (interrompem o pipeline se falharem):
-      - Nulos em colunas-chave (order_id, customer_id, product_id, price)
-      - Duplicatas por order_id
-      - Price > 0
-      - Quantidade no range [1, 9999]
-      - Status dentro do conjunto de valores permitidos
-      - Integridade referencial com customers e products (se fornecidos)
-
-    Checks de severidade WARNING (logados mas não interrompem):
-      - Nulos em colunas opcionais (quantity, status, payment_method)
-    """
     report = QualityReport(table_name="orders", total_rows=df.count())
 
     # Nulos críticos
@@ -258,8 +227,6 @@ def run_orders_quality(
     print(report.summary())
     return report
 
-
-# ── Execução direta (debug) ───────────────────────────────────────────────────
 
 if __name__ == "__main__":
     import os
